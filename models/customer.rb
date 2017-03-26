@@ -23,4 +23,9 @@ class Customer
     return result
   end
 
+  def self.delete_all()
+    sql = "DELETE FROM customers"
+    SqlRunner.run(sql)
+  end
+
 end
