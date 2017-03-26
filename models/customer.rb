@@ -17,6 +17,12 @@ class Customer
     return result
   end
 
+  def tickets()
+    sql = "SELECT films.* from films INNER JOIN tickets ON tickets.film_id = films.id WHERE customer_id = #{@id}"
+    tickets = SqlRunner.run(sql)
+    return tickets.count
+  end
+
   def save()
     sql = "INSERT INTO customers (name, funds) VALUES ('#{@name}', #{@funds}) RETURNING id"
     customer = SqlRunner.run(sql).first
