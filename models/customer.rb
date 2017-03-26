@@ -33,6 +33,14 @@ class Customer
     return result
   end
 
+  def self.find(id)
+    sql = "SELECT * FROM customers WHERE id = #{id}"
+    results = SqlRunner.run(sql)
+    customer_hash = results.first
+    customer = Customer.new(customer_hash)
+    return customer
+  end
+
   def self.delete_all()
     sql = "DELETE FROM customers"
     SqlRunner.run(sql)
